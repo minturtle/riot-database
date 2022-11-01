@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -18,7 +19,7 @@ class SummonerRepositoryTest {
     @Autowired
     private SummonerRepository summonerRepository;
 
-    private SummonerEntity summonerEntity = new SummonerEntity(new Summoner("ac", 1, 1L, "name", "id", "puuid", 15));
+    private SummonerEntity summonerEntity = new SummonerEntity(new Summoner("ac", 1, 1L, "name", "id", "puuid", 15L));
 
     @Test
     @DisplayName("summoner entity 저장 후 조회")
@@ -26,7 +27,8 @@ class SummonerRepositoryTest {
         //given
         summonerRepository.save(summonerEntity);
         //when
-        summonerRepository.findByIdx(summonerEntity.getIdx());
+        final SummonerEntity findSummoner = summonerRepository.findByIdx(summonerEntity.getIdx());
         //then
+        assertThat(findSummoner.getName()).isEqualTo("name");
     }
 }

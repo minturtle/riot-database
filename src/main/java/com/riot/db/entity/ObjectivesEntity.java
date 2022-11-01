@@ -1,6 +1,5 @@
 package com.riot.db.entity;
 
-import com.entity.match.Objective;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
