@@ -1,123 +1,30 @@
 package com.riot.db.entity;
 
-import com.entity.match.Participant;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="match_participant")
-@NoArgsConstructor
+@Table(name="participant")
 public class ParticipantEntity {
 
-    public ParticipantEntity(Participant participant, InfoEntity infoEntity) {
-        this.info = infoEntity;
-        assists = participant.getAssists();
-        baronKills = participant.getBaronKills();
-        bountyLevel = participant.getBountyLevel();
-        champExperience = participant.getChampExperience();
-        champLevel = participant.getChampLevel();
-        championId = participant.getChampionId();
-        championName = participant.getChampionName();
-        damageDealtToBuildings = participant.getDamageDealtToBuildings();
-        damageDealtToObjectives = participant.getDamageDealtToObjectives();
-        damageDealtToTurrets = participant.getDamageDealtToTurrets();
-        damageSelfMitigated = participant.getDamageSelfMitigated();
-        deaths = participant.getDeaths();
-        detectorWardsPlaced = participant.getDetectorWardsPlaced();
-        doubleKills = participant.getDoubleKills();
-        dragonKills = participant.getDragonKills();
-        firstBloodAssist = participant.getFirstBloodAssist();
-        firstBloodKill = participant.getFirstBloodKill();
-        firstTowerAssist = participant.getFirstTowerAssist();
-        firstTowerKill = participant.getFirstTowerKill();
-        goldEarned = participant.getGoldEarned();
-        goldSpent = participant.getGoldSpent();
-        individualPosition = participant.getIndividualPosition();
-        inhibitorKills = participant.getInhibitorKills();
-        inhibitorTakedowns = participant.getInhibitorTakedowns();
-        inhibitorLost = participant.getInhibitorLost();
-        item0 = participant.getItem0();
-        item1 = participant.getItem1();
-        item2 = participant.getItem2();
-        item3 = participant.getItem3();
-        item4 = participant.getItem4();
-        item5 = participant.getItem5();
-        item6 = participant.getItem6();
-        itemPurchased = participant.getItemPurchased();
-        killingSprees = participant.getKillingSprees();
-        kills = participant.getKills();
-        lane = participant.getLane();
-        largestKillingSpree = participant.getLargestKillingSpree();
-        largestMiltiKill = participant.getLargestMiltiKill();
-        longestTimeSpentLiving = participant.getLongestTimeSpentLiving();
-        magicDamageDealt = participant.getMagicDamageDealt();
-        magidDamageDealtToChampions = participant.getMagidDamageDealtToChampions();
-        magicDamageTaken = participant.getMagicDamageTaken();
-        neutralMinionsKilled =participant.getNeutralMinionsKilled();
-        objectivesStolen=participant.getObjectivesStolen();
-        objectivesStolenAssists=participant.getObjectivesStolenAssists();
-        participantId=participant.getParticipantId();
-        pentakills=participant.getPentakills();
-        physicalDamageDealt=participant.getPhysicalDamageDealt();
-        physicalDamageDealtToChampions=participant.getPhysicalDamageDealtToChampions();
-        physicalDamageTaken=participant.getPhysicalDamageTaken();
-        puuid=participant.getPuuid();
-        quadraKills=participant.getQuadraKills();
-        role=participant.getRole();
-        sightWardsBoughtInGame=participant.getSightWardsBoughtInGame();
-        spell1Casts=participant.getSpell1Casts();
-        spell2Casts=participant.getSpell2Casts();
-        spell3Casts=participant.getSpell3Casts();
-        spell4Casts=participant.getSpell4Casts();
-        summoner1Casts=participant.getSummoner1Casts();
-        summoner1Id=participant.getSummoner1Id();
-        summoner2Casts=participant.getSummoner2Casts();
-        summoner2Id=participant.getSummoner2Id();
-        summonerId=participant.getSummonerId();
-        summonerLevel=participant.getSummonerLevel();
-        summonerName=participant.getSummonerName();
-        teamEarlySurrendered=participant.getTeamEarlySurrendered();
-        teamId=participant.getTeamId();
-        teamPosition=participant.getTeamPosition();
-        timeCCingOthers=participant.getTimeCCingOthers();
-        timePlayed=participant.getTimePlayed();
-        totalDamageDealt=participant.getTotalDamageDealt();
-        totalDamageDealtToChampions=participant.getTotalDamageDealtToChampions();
-        totalDamageShieldedOnTeammates=participant.getTotalDamageShieldedOnTeammates();
-        totalDamageTaken=participant.getTotalDamageTaken();
-        totalHeal=participant.getTotalHeal();
-        totalHealsOnTeammates=participant.getTotalHealsOnTeammates();
-        totalMinionsKilled=participant.getTotalMinionsKilled();
-        totalTimeCCDealt=participant.getTotalTimeCCDealt();
-        totalTimeSpendDead=participant.getTotalTimeSpendDead();
-        totalUnitsHealed=participant.getTotalUnitsHealed();
-        tripleKills=participant.getTripleKills();
-        trueDamageDealt=participant.getTrueDamageDealt();
-        trueDamageDealtToChampions=participant.getTrueDamageDealtToChampions();
-        trueDamageTaken=participant.getTrueDamageTaken();
-        turretKills=participant.getTurretKills();
-        turretTakedowns=participant.getTurretTakedowns();
-        turretsLost=participant.getTurretsLost();
-        unrealKills=participant.getUnrealKills();
-        visionScore=participant.getVisionScore();
-        visionWardsBoughtInGame=participant.getVisionWardsBoughtInGame();
-        wardsKilled=participant.getWardsKilled();
-        wardsPlaced=participant.getWardsPlaced();
-        win=participant.getWin();
-    }
 
     @Id @GeneratedValue
-    private Long idx;
+    private long idx;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private InfoEntity info;
+    @ManyToOne
+    private TeamEntity team;
+
+    @ManyToOne
+    private SummonerEntity summoner;
+
+
+    private Integer championId; //챔피언 객체로 바꾸어야함.
     private Integer assists;
     private Integer baronKills;
     private Integer bountyLevel;
     private Integer champExperience;
     private Integer champLevel;
-    private Integer championId;
+
     private String championName;
     private Integer damageDealtToBuildings;
     private Integer damageDealtToObjectives;

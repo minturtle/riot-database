@@ -1,33 +1,39 @@
 package com.riot.db.entity;
 
-import com.entity.match.Team;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.List;
-import java.util.stream.Collectors;
 
+@Table(name="team")
 @Entity
-@Table(name="match_team")
-@NoArgsConstructor
-public class TeamEntity{
-
-    public TeamEntity(Team team, InfoEntity infoEntity) {
-        bans = team.getBans().stream().map((ban)->new BanEntity(ban)).collect(Collectors.toList());
-        info = infoEntity;
-    }
+public class TeamEntity {
 
     @Id @GeneratedValue
-    private Long idx;
+    private long idx;
 
-    @OneToMany(mappedBy = "team")
-    private List<BanEntity> bans;
+    private boolean win;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private InfoEntity info;
+    @Embedded
+    private ObjectiveField baron;
 
-    @OneToOne
-    private ObjectivesEntity objectives;
-    private Boolean win;
+    @Embedded
+    private ObjectiveField champion;
 
+    @Embedded
+    private ObjectiveField dragon;
+
+    @Embedded
+    private ObjectiveField inhibitor;
+
+    @Embedded
+    private ObjectiveField tower;
+
+    @Embedded
+    private ObjectiveField riftHerald; //정글 몬스터
+
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    private List<BanEntity> banEntity;
+
+
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    private List<ParticipantEntity> participants;
 }

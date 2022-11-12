@@ -1,27 +1,19 @@
 package com.riot.db.entity;
 
-import com.entity.match.Ban;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name ="match_ban")
-@NoArgsConstructor
-@Getter
+@Table(name="team_ban")
 public class BanEntity {
 
-    public BanEntity(Ban ban) {
-        this.championId = ban.getChampionId();
-        this.pickTurn = ban.getPickTurn();
-    }
-
     @Id @GeneratedValue
-    private Long idx;
-    private Integer championId;
-    private Integer pickTurn;
+    private long idx;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    private int pickTurn;
+
+    private int championId; // 나중에 champion 객체로 바꿔야함.
+
+    @ManyToOne
     private TeamEntity team;
 }

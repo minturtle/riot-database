@@ -1,34 +1,37 @@
 package com.riot.db.entity;
 
-import com.entity.Summoner;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
-@Table(name = "Summoner")
 @Entity
+@Table(name="summoner")
+@Getter @Setter
 @NoArgsConstructor
-@Getter
 public class SummonerEntity {
 
-    public SummonerEntity(Summoner summoner) {
-        this.profileIconId = summoner.getProfileIconId();
-        this.revisionDate = summoner.getRevisionDate();
-        this.name = summoner.getName();
-        this.id = summoner.getId();
-        this.puuid = summoner.getPuuid();
-        this.summonerLevel = summoner.getSummonerLevel();
-    }
 
     @Id
     @GeneratedValue
-    private Long idx;
+    private long idx;
 
-    private Integer profileIconId;
-    private Long revisionDate;
+    @Column(name="account_id")
+    private String accountId;
+
+    @Column(name="icon_id")
+    private int profileIconId;
+
+    @Column(name="revision_date")
+    private long revisionDate;
+
+    @Column(name="name")
     private String name;
-    private String id;
-    private String puuid;
-    private Long summonerLevel;
+
+    private String eid; //encrypted summoner ID
+    private String puuid; // encrypted puuid
+
+    private long level;
 }
