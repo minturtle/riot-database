@@ -1,11 +1,22 @@
 package com.riot.db.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="team_ban")
+@Getter @Setter
+@NoArgsConstructor
 public class BanEntity {
+
+    public BanEntity(int pickTurn, int championId, TeamEntity team) {
+        this.pickTurn = pickTurn;
+        this.championId = championId;
+        this.team = team;
+    }
 
     @Id @GeneratedValue
     private long idx;

@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="match")
@@ -15,8 +16,6 @@ public class MatchEntity {
     @Id
     @GeneratedValue
     private long idx;
-
-
 
     @Column(name="game_mode")
     private String gameMode;  // Game Constants(https://static.developer.riotgames.com/docs/lol/gameModes.json)
@@ -37,4 +36,7 @@ public class MatchEntity {
 
     @Column(name="game_duration")
     private long gameDuration;
+
+    @OneToMany(mappedBy = "match")
+    private List<TeamEntity> team;
 }

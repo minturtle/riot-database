@@ -5,13 +5,10 @@ import com.entity.Summoner;
 import com.entity.match.Match;
 import com.riot.db.entity.MatchEntity;
 import com.riot.db.entity.SummonerEntity;
-import com.riot.db.repository.MatchRepository;
-import com.riot.db.repository.SummonerRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.List;

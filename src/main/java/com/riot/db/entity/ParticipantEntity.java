@@ -1,12 +1,115 @@
 package com.riot.db.entity;
 
 
+import com.entity.match.Participant;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="participant")
+@Getter @Setter
+@NoArgsConstructor
 public class ParticipantEntity {
 
+    public ParticipantEntity(Participant participant) {
+        this.assists = participant.getAssists();
+        this.baronKills = participant.getBaronKills();
+        this.bountyLevel = participant.getBountyLevel();
+        this.champExperience = participant.getChampExperience();
+        this.champLevel = participant.getChampLevel();
+        this.championId = participant.getChampionId();
+        this.championName = participant.getChampionName();
+        this.damageDealtToBuildings = participant.getDamageDealtToBuildings();
+        this.damageDealtToObjectives = participant.getDamageDealtToObjectives();
+        this.damageDealtToTurrets = participant.getDamageDealtToTurrets();
+        this.damageSelfMitigated = participant.getDamageSelfMitigated();
+        this.deaths = participant.getDeaths();
+        this.detectorWardsPlaced = participant.getDetectorWardsPlaced();
+        this.doubleKills = participant.getDoubleKills();
+        this.dragonKills = participant.getDragonKills();
+        this.firstBloodAssist = participant.getFirstBloodAssist();
+        this.firstBloodKill = participant.getFirstBloodKill();
+        this.firstTowerAssist = participant.getFirstTowerAssist();
+        this.firstTowerKill = participant.getFirstTowerKill();
+        this.goldEarned = participant.getGoldEarned();
+        this.goldSpent = participant.getGoldSpent();
+        this.individualPosition = participant.getIndividualPosition();
+        this.inhibitorKills = participant.getInhibitorKills();
+        this.inhibitorTakedowns = participant.getInhibitorTakedowns();
+        this.inhibitorLost = participant.getInhibitorLost();
+        this.item0 = participant.getItem0();
+        this.item1 = participant.getItem1();
+        this.item2 = participant.getItem2();
+        this.item3 = participant.getItem3();
+        this.item4 = participant.getItem4();
+        this.item5 = participant.getItem5();
+        this.item6 = participant.getItem6();
+        this.itemPurchased = participant.getItemPurchased();
+        this.killingSprees = participant.getKillingSprees();
+        this.kills = participant.getKills();
+        this.lane = participant.getLane();
+        this.largestKillingSpree = participant.getLargestKillingSpree();
+        this.largestMiltiKill = participant.getLargestMiltiKill();
+        this.longestTimeSpentLiving = participant.getLongestTimeSpentLiving();
+        this.magicDamageDealt = participant.getMagicDamageDealt();
+        this.magidDamageDealtToChampions = participant.getMagidDamageDealtToChampions();
+        this.magicDamageTaken = participant.getMagicDamageTaken();
+        this.neutralMinionsKilled = participant.getNeutralMinionsKilled();
+        this.objectivesStolen = participant.getObjectivesStolen();
+        this.objectivesStolenAssists = participant.getObjectivesStolenAssists();
+        this.participantId = participant.getParticipantId();
+        this.pentakills = participant.getPentakills();
+        this.physicalDamageDealt = participant.getPhysicalDamageDealt();
+        this.physicalDamageDealtToChampions = participant.getPhysicalDamageDealtToChampions();
+        this.physicalDamageTaken = participant.getPhysicalDamageTaken();
+        this.puuid = participant.getPuuid();
+        this.quadraKills = participant.getQuadraKills();
+        this.role = participant.getRole();
+        this.sightWardsBoughtInGame = participant.getSightWardsBoughtInGame();
+        this.spell1Casts = participant.getSpell1Casts();
+        this.spell2Casts = participant.getSpell2Casts();
+        this.spell3Casts = participant.getSpell3Casts();
+        this.spell4Casts = participant.getSpell4Casts();
+        this.summoner1Casts = participant.getSummoner1Casts();
+        this.summoner1Id = participant.getSummoner1Id();
+        this.summoner2Casts = participant.getSummoner2Casts();
+        this.summoner2Id = participant.getSummoner2Id();
+        this.summonerId = participant.getSummonerId();
+        this.summonerLevel = participant.getSummonerLevel();
+        this.summonerName = participant.getSummonerName();
+        this.teamEarlySurrendered = participant.getTeamEarlySurrendered();
+        this.teamId = participant.getTeamId();
+        this.teamPosition = participant.getTeamPosition();
+        this.timeCCingOthers = participant.getTimeCCingOthers();
+        this.timePlayed = participant.getTimePlayed();
+        this.totalDamageDealt = participant.getTotalDamageDealt();
+        this.totalDamageDealtToChampions = participant.getTotalDamageDealtToChampions();
+        this.totalDamageShieldedOnTeammates = participant.getTotalDamageShieldedOnTeammates();
+        this.totalDamageTaken = participant.getTotalDamageTaken();
+        this.totalHeal = participant.getTotalHeal();
+        this.totalHealsOnTeammates = participant.getTotalHealsOnTeammates();
+        this.totalMinionsKilled = participant.getTotalMinionsKilled();
+        this.totalTimeCCDealt = participant.getTotalTimeCCDealt();
+        this.totalTimeSpendDead = participant.getTotalTimeSpendDead();
+        this.totalUnitsHealed = participant.getTotalUnitsHealed();
+        this.tripleKills = participant.getTripleKills();
+        this.trueDamageDealt = participant.getTrueDamageDealt();
+        this.trueDamageDealtToChampions = participant.getTrueDamageDealtToChampions();
+        this.trueDamageTaken = participant.getTrueDamageTaken();
+        this.turretKills = participant.getTurretKills();
+        this.turretTakedowns = participant.getTurretTakedowns();
+        this.turretsLost = participant.getTurretsLost();
+        this.unrealKills = participant.getUnrealKills();
+        this.visionScore = participant.getVisionScore();
+        this.visionWardsBoughtInGame = participant.getVisionWardsBoughtInGame();
+        this.wardsKilled = participant.getWardsKilled();
+        this.wardsPlaced = participant.getWardsPlaced();
+        this.win = participant.getWin();
+
+    }
 
     @Id @GeneratedValue
     private long idx;
