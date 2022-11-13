@@ -215,4 +215,9 @@ public class ParticipantEntity {
     private Integer wardsKilled;
     private Integer wardsPlaced;
     private Boolean win;
+
+    public MatchEntity getMatch(){
+        return this.team.getMatch();
+    }
+
 }

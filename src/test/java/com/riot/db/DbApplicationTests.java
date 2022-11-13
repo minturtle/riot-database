@@ -5,6 +5,8 @@ import com.entity.Summoner;
 import com.entity.match.Match;
 import com.riot.db.entity.MatchEntity;
 import com.riot.db.entity.SummonerEntity;
+import com.riot.db.repository.ParticipantRepository;
+import com.riot.db.repository.SummonerRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ class DbApplicationTests {
 	private SummonerRepository summonerRepository;
 
 	@Autowired
-	private MatchRepository matchRepository;
+	private ParticipantRepository participantRepository;
 
 	@Test
 	void contextLoads() {
@@ -31,20 +33,14 @@ class DbApplicationTests {
 
 
 	@Test
-	@DisplayName("Match를 DB에 나누어 모두 저장")
+	@DisplayName("summoner 저장 후 조회하기")
 	void t1() throws Exception {
 		//given
 		final Summoner summoner = api.getSummonerByName("인간사냥꾼김씨");
-		final List<Match> matchList = api.getMatchesBySummonerName("인간사냥꾼김씨", 0, 1);
-
 		//when
 		SummonerEntity summonerEntity = new SummonerEntity(summoner);
 		summonerRepository.save(summonerEntity);
 
-		MatchEntity matchEntity = new MatchEntity(matchList.get(0), summonerEntity);
-		matchRepository.save(matchEntity);
-		//then
-		System.out.println();
 
 	}
 }
