@@ -1,5 +1,6 @@
 package com.riot.db.entity;
 
+import com.entity.match.Ban;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,9 +13,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class BanEntity {
 
-    public BanEntity(int pickTurn, int championId, TeamEntity team) {
-        this.pickTurn = pickTurn;
-        this.championId = championId;
+    public BanEntity(Ban ban, TeamEntity team) {
+        this.pickTurn = ban.getPickTurn();
+        this.championId = ban.getChampionId();
         this.team = team;
     }
 

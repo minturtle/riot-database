@@ -14,7 +14,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class ParticipantEntity {
 
-    public ParticipantEntity(Participant participant) {
+    public ParticipantEntity(Participant participant, TeamEntity team) {
+        this.team = team;
         this.assists = participant.getAssists();
         this.baronKills = participant.getBaronKills();
         this.bountyLevel = participant.getBountyLevel();
@@ -117,8 +118,6 @@ public class ParticipantEntity {
     @ManyToOne
     private TeamEntity team;
 
-    @ManyToOne
-    private SummonerEntity summoner;
 
 
     private Integer championId; //챔피언 객체로 바꾸어야함.

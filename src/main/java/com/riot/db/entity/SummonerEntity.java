@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name="summoner")
@@ -41,7 +42,23 @@ public class SummonerEntity {
     private String name;
 
     private String eid; //encrypted summoner ID
+
+    @Column(unique = true)
     private String puuid; // encrypted puuid
 
     private long level;
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SummonerEntity that = (SummonerEntity) o;
+        return idx == that.idx && Objects.equals(puuid, that.puuid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idx, puuid);
+    }
 }
