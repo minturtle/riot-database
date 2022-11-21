@@ -60,8 +60,7 @@ class DbApplicationTests {
 		Match match = api.getMatchesBySummonerPUUID(summoner.getPuuid(), 0, 1).get(0);
 
 		//when
-		MatchEntity.MetaData metaData = new MatchEntity.MetaData(match.getMetadata());
-		MatchEntity matchEntity = new MatchEntity(metaData, match.getInfo());
+		MatchEntity matchEntity = new MatchEntity(match);
 
 		matchRepository.save(matchEntity);
 		//then

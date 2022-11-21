@@ -1,8 +1,8 @@
 package com.riot.db.entity;
 
 import com.entity.match.Info;
+import com.entity.match.Match;
 import com.entity.match.MetaData;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,8 +22,12 @@ public class MatchEntity {
     @GeneratedValue
     private long idx;
 
-    public MatchEntity(MetaData metaData, Info info) {
-        this.metaData = metaData;
+    public MatchEntity(Match match) {
+        MetaData metaData = match.getMetadata();
+        Info info = match.getInfo();
+
+        this.dataVersion = metaData.getDataVersion();
+        this.matchId = metaData.getMatchId();
         this.gameMode = info.getGameMode();
         this.mapId = info.getMapId();
         this.gameName = info.getGameName();
@@ -33,8 +37,11 @@ public class MatchEntity {
         this.team = info.getTeams().stream().map(team->new TeamEntity(team, this, info.getParticipants())).collect(Collectors.toList());
     }
 
-    @Embedded
-    private MetaData metaData;
+    @Column(name="data_version")
+    private String dataVersion; //Match data version.
+
+    @Column(name="match_id", unique = true)
+    private String matchId;
 
     @Column(name="game_mode")
     private String gameMode;  // Game Constants(https://static.developer.riotgames.com/docs/lol/gameModes.json)
@@ -57,33 +64,16 @@ public class MatchEntity {
     @OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
     private List<TeamEntity> team;
 
-    @Embeddable
-    @NoArgsConstructor
-
-    @Getter @Setter
-    public static class MetaData{
-        public MetaData(com.entity.match.MetaData metaData) {
-            this.dataVersion = metaData.getDataVersion();
-            this.matchId = metaData.getMatchId();
-        }
-
-        @Column(name="data_version")
-        private String dataVersion; //Match data version.
-
-        @Column(name="match_id", unique = true)
-        private String matchId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MatchEntity that = (MatchEntity) o;
-        return idx == that.idx;
+        return Objects.equals(matchId, that.matchId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idx);
+        return Objects.hash(matchId);
     }
 }
