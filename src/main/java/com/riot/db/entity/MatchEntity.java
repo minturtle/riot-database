@@ -13,7 +13,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name="match")
+@Table(name="_match")
 @Getter @Setter
 @NoArgsConstructor
 public class MatchEntity {
