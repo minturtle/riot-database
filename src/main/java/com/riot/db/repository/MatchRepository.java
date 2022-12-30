@@ -10,6 +10,4 @@ public interface MatchRepository extends JpaRepository<MatchEntity, Long> {
 
     @Query("SELECT m FROM ParticipantEntity p LEFT JOIN MatchEntity m ON p.team.match=m WHERE p.puuid= :puuid")
     List<MatchEntity> findMatchsByPuuid(String puuid);
-
-    MatchEntity findByMatchId(String matchId);
 }

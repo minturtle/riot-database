@@ -48,6 +48,8 @@ public class SummonerEntity {
 
     private long level;
 
+    @Column(name="last_api_call_time")
+    private long lastApiCallTime;
 
     @Override
     public boolean equals(Object o) {

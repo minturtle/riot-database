@@ -34,7 +34,10 @@ public class MatchEntity {
         this.queueId = info.getQueueId();
         this.gameCreation = info.getGameCreation();
         this.gameDuration = info.getGameDuration();
-        this.team = info.getTeams().stream().map(team->new TeamEntity(team, this, info.getParticipants())).collect(Collectors.toList());
+
+        if(info.getTeams() != null){
+            this.team = info.getTeams().stream().map(team->new TeamEntity(team, this, info.getParticipants())).collect(Collectors.toList());
+        }
     }
 
     @Column(name="data_version")
